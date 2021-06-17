@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
  
 export default class Main extends Component {
     constructor(props) {
@@ -22,19 +23,40 @@ export default class Main extends Component {
  
     render() {
         const { produto } = this.state;
-        return produto.map((produto, index) => (
  
+        return (
             <div className="produto-list">
-                <div key={index} className="card mb-4">
-                    <h5 className="card-header">{produto.nome}</h5>
+                <Link to={`/criarProduto`}> <button type="button" class="btn btn-success">Novo</button> </Link>
+                <br /><br />
  
-                    <article key={produto._id}>
-                        <strong> {produto.salario} </strong>
-                        <p> <Link to={`/produto/${produto.id}`}> Acessar </Link> </p>
-                        <br />
-                    </article>
-                </div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Quantidade em estoque</th>
+                            <th scope="col">Preço</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {produto.map((produto, index) => (
+                            <tr>
+                                <th scope="row">{produto.id}</th>
+                                <td>{produto.nome}</td>
+                                <td>{produto.descricao}</td>
+                                <td>{produto.qtdEstoque}</td>
+                                <td>{produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
+                                <td> <Link to={`/produto/${produto.id}`}> <button type="button" class="btn btn-primary">Detalhes</button> </Link> </td>
+                                <td><button type="button" class="btn btn-warning">Atualizar</button></td>
+                                <td><button type="button" class="btn btn-danger">Excluir</button></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
-        ))
-    };
+        )
+    }
 }
+
