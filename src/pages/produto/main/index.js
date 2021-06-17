@@ -50,7 +50,7 @@ export default class Main extends Component {
                                 <td>{produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
                                 <td> <Link to={`/produto/${produto.id}`}> <button type="button" class="btn btn-primary">Detalhes</button> </Link> </td>
                                 <td> <Link to={`/editarProduto/${produto.id}`}> <button type="button" class="btn btn-warning">Atualizar</button> </Link></td>
-                                <td> <button type="button" class="btn btn-danger">Excluir</button> </td>
+                                <td> <Link to={`/deletarProduto/${produto.id}`}> <button type="button" class="btn btn-danger">Excluir</button> </Link></td>
                             </tr>
                         ))}
                     </tbody>
