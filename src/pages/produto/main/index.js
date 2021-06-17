@@ -14,7 +14,7 @@ export default class Main extends Component {
     }
  
     componentDidMount() {
-        fetch(`https://crud-produtos.herokuapp.com/produto`) //https://backend-produto-eng.herokuapp.com/produto
+        fetch(`https://crud-produtos.herokuapp.com/produto`)
             .then(produto =>
                 produto.json().then(produto => this.setState({ produto }))
             )
@@ -49,8 +49,8 @@ export default class Main extends Component {
                                 <td>{produto.qtdEstoque}</td>
                                 <td>{produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
                                 <td> <Link to={`/produto/${produto.id}`}> <button type="button" class="btn btn-primary">Detalhes</button> </Link> </td>
-                                <td><button type="button" class="btn btn-warning">Atualizar</button></td>
-                                <td><button type="button" class="btn btn-danger">Excluir</button></td>
+                                <td> <Link to={`/editarProduto/${produto.id}`}> <button type="button" class="btn btn-warning">Atualizar</button> </Link></td>
+                                <td> <button type="button" class="btn btn-danger">Excluir</button> </td>
                             </tr>
                         ))}
                     </tbody>
@@ -59,4 +59,3 @@ export default class Main extends Component {
         )
     }
 }
-
